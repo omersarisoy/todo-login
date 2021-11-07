@@ -2,7 +2,9 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Colors } from "./colors";
 import { Button, Box, TextField } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
-import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
 
 export const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -64,9 +66,8 @@ export const LoginPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-bottom: 60px;
-  //   border: 3px solid red;
+  height: 90vh;
+
 `;
 
 export const Title = styled.h1`
@@ -74,7 +75,8 @@ export const Title = styled.h1`
   font-size: 4em;
   color: ${Colors.darkGrey};
   letter-spacing: 3px;
-  padding: 30px;
+  padding-bottom: 30px;
+
 `;
 
 export const SubTitle = styled.p`
@@ -82,6 +84,8 @@ export const SubTitle = styled.p`
   color: ${Colors.darkGrey};
   text-align: center;
   letter-spacing: 3px;
+  padding-bottom: 30px;
+
 `;
 
 export const CustomButton = styled(Button)`
@@ -90,9 +94,12 @@ export const CustomButton = styled(Button)`
     background-color: ${Colors.red};
     text-transform: capitalize;
     padding: 5px 30px;
-    margin: 50px;
     font-weight: 400;
     font-size: 1em;
+    margin-bottom: 50px;
+
+    
+
   }
 `;
 
@@ -103,9 +110,11 @@ export const FormComponent = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  padding: 60px;
+  padding: 50px;
   position: relative;
   border: 2px solid ${Colors.lightGrey};
+  width: 80%;
+
 `;
 
 export const LoginTitle = styled.h1`
@@ -116,16 +125,46 @@ export const LoginTitle = styled.h1`
 `;
 
 export const FormBox = styled(Box)`
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 450px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   position: relative;
 `;
 
 export const Textfield = styled(TextField)`
   && {
+    width: 100%;
+  }
+`;
+
+export const PasswordDiv = styled.div`
+  position: relative;
+  width: 100%;
+
+`;
+export const VisibleIcon = styled(VisibilityIcon)`
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  color: ${Colors.darkGrey};
+
+  &.invisible{
+    visibility: hidden;
+
+  }
+`;
+export const VisibleOffIcon = styled(VisibilityOffIcon)`
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  color: ${Colors.darkGrey};
+
+  &.invisible{
+    visibility: hidden;
+
   }
 `;
 
@@ -135,7 +174,6 @@ export const GoButton = styled(Button)`
     border: 1px solid ${Colors.lightGrey};
     width: 60%;
     font-size: 2em;
-    margin-top: 70px;
   }
 `;
 
@@ -144,7 +182,6 @@ export const ForgotText = styled.p`
   color: ${Colors.lightGrey};
   text-align: center;
   font-size: 2em;
-  margin-top: 70px;
 `;
 
 export const SubDiv = styled.div`
@@ -154,12 +191,11 @@ export const SubDiv = styled.div`
   border-radius: 8px;
   position: absolute;
   border-top: 2px solid ${Colors.lightGrey};
-  //   border: 3px solid red;
   top: -15px;
 `;
 
 export const Pencil = styled.div`
-  padding: 60px;
+  padding: 50px;
   background-color: ${Colors.red};
   border-radius: 50%;
   display: flex;
@@ -167,13 +203,13 @@ export const Pencil = styled.div`
   justify-content: center;
   color: ${Colors.white};
   position: absolute;
-  right: -100px;
-  top: 40px;
+  right: -80px;
+  top: 30px;
 `;
 
 export const PencilIcon = styled(CreateOutlinedIcon)`
   && {
-    font-size: 5em;
+    font-size: 4em;
   }
 `;
 
@@ -199,23 +235,31 @@ export const TodoContainer = styled.div`
   background-color: ${Colors.white};
   width: 700px;
   border-radius: 20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  position:relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &::after {
+    content: "";
+    width: 96%;
+    height: 40px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: -14px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 `;
 
-export const TrashBin = styled(DeleteIcon)`
+export const TrashButton = styled(Button)`
   && {
     color: ${Colors.darkGrey};
     float: right;
-    padding: 10px;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
     font-size: 50px;
-    position:absolute;
-    top:0;
-    right:0;
-
   }
 `;
 
@@ -230,6 +274,93 @@ export const ToDoHeader = styled.div`
 export const ToDoDate = styled.p`
   font-family: Arial;
   color: ${Colors.lightPink};
-  padding-top: 35px;
+  padding-top: 20px;
+`;
 
+export const DeleteButton = styled(Button)`
+  && {
+    visibility: hidden;
+    opacity: 0;
+    color: ${Colors.darkGrey};
+    position: absolute;
+    right: 40px;
+    transition: all .3s ease;
+  }
+`;
+
+export const ListContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+  position: relative;
+  margin-top: 30px;
+  overflow: auto;
+  &:hover {
+    cursor: pointer;
+    .deleteButton {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+`;
+
+export const Inputs = styled.p`
+  font-family: Arial;
+  color: ${Colors.darkGrey};
+  font-size: 1.5em;
+  &.line {
+    text-decoration: line-through;
+  }
+`;
+
+export const PlusButton = styled(Button)`
+  && {
+    color: ${Colors.lightGrey};
+    font-size: 80px;
+    font-weight: lighter;
+
+    &.hidden {
+      display: none;
+    }
+  }
+`;
+
+export const MinusButton = styled(Button)`
+  && {
+    color: ${Colors.lightGrey};
+    font-size: 80px;
+    font-weight: lighter;
+
+    &.hidden {
+      display: none;
+    }
+  }
+`;
+
+export const InputBox = styled.div`
+  width: 600px;
+  margin-bottom: 80px;
+  position: relative;
+
+  &.hide {
+    visibility: hidden;
+  }
+`;
+
+export const InputArea = styled.input`
+  font-family: Arial;
+  padding: 15px;
+  border: 1px solid ${Colors.darkGrey};
+  border-radius: 10px;
+  width: 100%;
+`;
+
+export const AddButton = styled(Button)`
+  && {
+    color: ${Colors.darkGrey};
+    position: absolute;
+    right: 0;
+    top: 7px;
+  }
 `;

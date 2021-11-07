@@ -5,6 +5,9 @@ import { GlobalStyle } from "./assets/styled";
 import LoginPage from "./components/LoginPage";
 import ToDoPage from "./components/ToDoPage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from "react-router";
+import Routes from "./commons/routes";
+import { HashRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   App: {},
@@ -12,21 +15,19 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles();
+
+  const getItem = localStorage.getItem("token")
   return (
     <Router>
       <div className={classes.App}>
         <GlobalStyle />
-        <Switch>
-          <Route exact path="/">
-            <LoginPage />
-          </Route>
-
-          <Route path="/todo">
-            <ToDoPage />
-          </Route>
-        </Switch>
+        {
+          getItem && getItem == "omer" ? <Redirect to="/todo" /> : <Redirect to="/" />
+        }
+        <Routes />
       </div>
     </Router>
+      
   );
 };
 
