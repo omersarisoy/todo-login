@@ -97,9 +97,6 @@ export const CustomButton = styled(Button)`
     font-weight: 400;
     font-size: 1em;
     margin-bottom: 50px;
-
-    
-
   }
 `;
 
